@@ -24,3 +24,6 @@
 
 # SimpleCov test coverage data folder
 coverage
+
+# Ignore application configuration
+/config/application.yml
