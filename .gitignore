@@ -27,3 +27,6 @@ coverage
 
 # Ignore application configuration
 /config/application.yml
+
+# Ignore API mock stubs stored with VCR gem
+/spec/cassettes
