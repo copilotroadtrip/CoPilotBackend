@@ -19,4 +19,24 @@ class GoogleMapsService
       req.params['destination'] = destination
     end
   end
+
+  def json
+    JSON.parse(response.body)
+  end
+
+  def steps
+    json['routes'][0]['legs'][0]['steps']
+  end
+
+  def route_coordinates
+    coordinates = []
+
+    steps.each do |step|
+      polyline = step['polyline']['points']
+      p_decoded = Polylines::Decoder.decode_polyline(polyline)    # Gem that decodes polyline string into an array of long/lat coords
+      coordinates += p_decoded
+    end
+
+    coordinates
+  end
 end
