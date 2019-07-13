@@ -41,6 +41,13 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'webdrivers'
   gem 'webmock'
+
+  # FIXME: Force bundler to use the beta version of the hashdiff gem
+  #        `hashdiff` is a dependency of the `webmock` gem. Feel free to remove
+  #        the following line from this Gemfile as soon as hashdiff 1.0.0 is
+  #        officially realized.
+  # https://stackoverflow.com/questions/57004493/ruby-gem-hashdiff-how-to-upgrade-to-1-0-to-stop-deprecation-warnings
+  gem 'hashdiff', '>= 1.0.0.beta1'
 end
 
 group :development do
