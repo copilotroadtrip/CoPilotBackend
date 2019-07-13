@@ -34,6 +34,9 @@ gem 'faraday'
 # Figaro - ENV variable gem
 gem 'figaro'
 
+# Polyline to help decode GoogleMaps polylines into long lat coords
+gem 'polylines'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
