@@ -28,6 +28,15 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
+# Faraday - Http requests gem
+gem 'faraday'
+
+# Figaro - ENV variable gem
+gem 'figaro'
+
+# Polyline to help decode GoogleMaps polylines into long lat coords
+gem 'polylines'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -41,6 +50,13 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'webdrivers'
   gem 'webmock'
+
+  # FIXME: Force bundler to use the beta version of the hashdiff gem
+  #        `hashdiff` is a dependency of the `webmock` gem. Feel free to remove
+  #        the following line from this Gemfile as soon as hashdiff 1.0.0 is
+  #        officially realized.
+  # https://stackoverflow.com/questions/57004493/ruby-gem-hashdiff-how-to-upgrade-to-1-0-to-stop-deprecation-warnings
+  gem 'hashdiff', '>= 1.0.0.beta1'
 end
 
 group :development do

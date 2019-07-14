@@ -9,7 +9,14 @@ require 'rspec/rails'
 
 # SimpleCov configuration
 require 'simplecov'
-SimpleCov.start 'rails'
+SimpleCov.start 'rails' do
+  add_filter "/app/channels/application_cable/channel.rb"
+  add_filter "/app/channels/application_cable/connection.rb"
+  add_filter "/app/controllers/application_controller.rb"
+  add_filter "/app/jobs/application_job.rb"
+  add_filter "/app/mailers/application_mailer.rb"
+  add_filter "/app/models/application_record.rb"
+end
 
 # Adds API mock/stub fixture tools configuration
 require 'vcr'
@@ -20,7 +27,7 @@ VCR.configure do |config|
   config.cassette_library_dir = 'spec/cassettes'
   config.hook_into :webmock
   config.configure_rspec_metadata!
-  config.filter_sensitive_data('<DARK_SKY_API>') { ENV['DARK_SKY_API'] }
+  config.filter_sensitive_data('<GOOGLE_MAPS_APIKEY>') { ENV['GOOGLE_MAPS_APIKEY'] }
 
   config.ignore_hosts(
     'chromedriver.storage.googleapis.com',

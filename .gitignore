@@ -21,3 +21,12 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# SimpleCov test coverage data folder
+coverage
+
+# Ignore application configuration
+/config/application.yml
+
+# Ignore API mock stubs stored with VCR gem
+/spec/cassettes
