@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_14_225520) do
+ActiveRecord::Schema.define(version: 2019_07_14_230937) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,10 +25,22 @@ ActiveRecord::Schema.define(version: 2019_07_14_225520) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "trip_pois", force: :cascade do |t|
+    t.bigint "trip_id"
+    t.bigint "poi_id"
+    t.integer "sequence_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["poi_id"], name: "index_trip_pois_on_poi_id"
+    t.index ["trip_id"], name: "index_trip_pois_on_trip_id"
+  end
+
   create_table "trips", force: :cascade do |t|
     t.string "token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "trip_pois", "pois"
+  add_foreign_key "trip_pois", "trips"
 end
