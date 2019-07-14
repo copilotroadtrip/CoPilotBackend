@@ -8,4 +8,9 @@ RSpec.describe Poi, type: :model do
     it { should validate_presence_of :sw_latitude }
     it { should validate_presence_of :sw_longitude }
   end
+
+  describe 'Relationships' do
+    it { should have_many :trip_pois }
+    it { should have_many(:trips).through(:trip_pois) }
+  end
 end
