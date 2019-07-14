@@ -1,24 +1,8 @@
-# README
+# CoPilotBackend
+Rails API for CoPilot - Road trip data consolidated in one application
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Code Status
+[![Build Status](https://travis-ci.com/copilotroadtrip/CoPilotBackend.svg?branch=master)](https://travis-ci.com/copilotroadtrip/CoPilotBackend)
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Tech Stack
+- Rails 5.2.3
