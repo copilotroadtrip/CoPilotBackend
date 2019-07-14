@@ -35,6 +35,11 @@ VCR.configure do |config|
     'selenium-release.storage.googleapis.com',
     'developer.microsoft.com/en-us/microsoft-edge/tools/webdriver'
   )
+
+  # Forces body format to be recorded as UTF-8
+  config.before_record do |i|
+    i.response.body.force_encoding('UTF-8')
+  end
 end
 
 # Requires supporting ruby files with custom matchers and macros, etc, in

@@ -10,7 +10,7 @@ describe 'Google Maps Service Spec' do
       route_coordinates = gs.route_coordinates
 
       expect(route_coordinates).to         be_an(Array)
-      expect(route_coordinates.length).to  eq(41778)
+      expect(route_coordinates.length).to  eq(41795)
 
       expect(route_coordinates.first).to   eq([39.74116, -104.98791])
       expect(route_coordinates.last).to    eq([47.60637999999997, -122.33223000000001])
