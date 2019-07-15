@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_15_225107) do
+ActiveRecord::Schema.define(version: 2019_07_15_230740) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,8 +25,8 @@ ActiveRecord::Schema.define(version: 2019_07_15_225107) do
     t.datetime "updated_at", null: false
     t.integer "population"
     t.string "state"
-    t.integer "land_area"
-    t.integer "total_area"
+    t.string "land_area"
+    t.string "total_area"
   end
 
   create_table "trip_pois", force: :cascade do |t|
