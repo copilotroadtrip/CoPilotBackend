@@ -37,6 +37,9 @@ gem 'figaro'
 # Polyline to help decode GoogleMaps polylines into long lat coords
 gem 'polylines'
 
+# CSV for seeding database
+gem 'csv'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -50,7 +53,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'webdrivers'
   gem 'webmock'
-  gem 'shoulda-matchers'
 
   # FIXME: Force bundler to use the beta version of the hashdiff gem
   #        `hashdiff` is a dependency of the `webmock` gem. Feel free to remove
