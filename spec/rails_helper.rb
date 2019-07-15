@@ -28,6 +28,7 @@ VCR.configure do |config|
   config.hook_into :webmock
   config.configure_rspec_metadata!
   config.filter_sensitive_data('<GOOGLE_MAPS_APIKEY>') { ENV['GOOGLE_MAPS_APIKEY'] }
+  config.filter_sensitive_data('<DARK_SKY_APIKEY>') { ENV['DARK_SKY_APIKEY'] }
 
   config.ignore_hosts(
     'chromedriver.storage.googleapis.com',
