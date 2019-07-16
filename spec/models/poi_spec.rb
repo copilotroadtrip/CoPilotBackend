@@ -17,4 +17,38 @@ RSpec.describe Poi, type: :model do
     it { should have_many :trip_pois }
     it { should have_many(:trips).through(:trip_pois) }
   end
+
+  describe 'Class Methods' do
+    describe 'poi_at_location' do
+
+      before :each do
+        @poi_1 = create(:poi,
+          sw_latitude: 0, sw_longitude: 0,ne_latitude: 2, ne_longitude: 2
+        )
+        @poi_2 = create(:poi,
+          sw_latitude: 1, sw_longitude: 1,ne_latitude: 3, ne_longitude: 3
+        )
+      end
+      it 'can return a single poi' do
+        single_poi = Poi.poi_at_location(0.5, 0.5)
+        expect(single_poi).to have(1).items
+        expect(single_poi[0]).to eq(@poi_1)
+      end
+
+      it 'can return multiple poi' do
+        multiple_poi = Poi.poi_at_location(1.5, 1.5)
+        expect(multiple_poi).to have(2).items
+
+        expect(multiple_poi).to include(@poi_1)
+        expect(multiple_poi).to include(@poi_2)
+
+      end
+
+      it 'can return no poi' do
+        zero_poi = Poi.poi_at_location(-1,-1)
+        expect(zero_poi).to have(0).items
+
+      end
+    end
+  end
 end
