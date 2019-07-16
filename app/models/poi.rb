@@ -14,4 +14,9 @@ class Poi < ApplicationRecord
       .where( 'sw_longitude <= ?', lng)
       .where('ne_longitude >= ?', lng)
   end
+
+  def self.population_at_location(lat, lng)
+    self.poi_at_location(lat, lng)
+    .sum(:population)
+  end
 end

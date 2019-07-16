@@ -39,4 +39,44 @@ class GoogleMapsService
 
     coordinates
   end
+
+  def leg_info
+    json['routes'][0]['legs'][0]
+  end
+
+  def start_address
+    leg_info['start_address']
+  end
+
+  def end_address
+    leg_info['end_address']
+  end
+
+  def origin_lat
+    leg_info['start_location']['lat']
+  end
+
+  def origin_lng
+    leg_info['start_location']['lng']
+  end
+
+  def destination_lat
+    leg_info['end_location']['lat']
+  end
+
+  def destination_lng
+    leg_info['end_location']['lng']
+  end
+
+  def distance_text
+    leg_info['distance']['text']
+  end
+
+  def duration_seconds
+    leg_info['duration']['value']
+  end
+
+  def duration_hours
+    (duration_seconds / 3600.0)
+  end
 end
