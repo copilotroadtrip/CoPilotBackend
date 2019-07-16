@@ -6,4 +6,12 @@ class Poi < ApplicationRecord
                         :land_area, :total_area,
                         :ne_latitude, :ne_longitude,
                         :sw_latitude, :sw_longitude
+
+  def self.poi_at_location(lat, lng)
+    Poi
+      .where('ne_latitude >= ?', lat)
+      .where('sw_latitude <= ?', lat)
+      .where( 'sw_longitude <= ?', lng)
+      .where('ne_longitude >= ?', lng)
+  end
 end
