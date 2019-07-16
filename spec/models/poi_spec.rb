@@ -31,13 +31,13 @@ RSpec.describe Poi, type: :model do
       end
       it 'can return a single poi' do
         single_poi = Poi.poi_at_location(0.5, 0.5)
-        expect(single_poi).to have(1).items
+        expect(single_poi.length).to eq(1)
         expect(single_poi[0]).to eq(@poi_1)
       end
 
       it 'can return multiple poi' do
         multiple_poi = Poi.poi_at_location(1.5, 1.5)
-        expect(multiple_poi).to have(2).items
+        expect(multiple_poi.length).to eq(2)
 
         expect(multiple_poi).to include(@poi_1)
         expect(multiple_poi).to include(@poi_2)
@@ -46,7 +46,7 @@ RSpec.describe Poi, type: :model do
 
       it 'can return no poi' do
         zero_poi = Poi.poi_at_location(-1,-1)
-        expect(zero_poi).to have(0).items
+        expect(zero_poi.length).to eq(0)
 
       end
     end
