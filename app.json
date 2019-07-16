@@ -29,6 +29,9 @@
     },
     "GOOGLE_MAPS_APIKEY": {
       "required": true
+    },
+    "DARK_SKY_APIKEY": {
+      "required": true
     }
   },
   "formation": {
