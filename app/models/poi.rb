@@ -9,9 +9,9 @@ class Poi < ApplicationRecord
 
   def self.poi_at_location(lat, lng)
     Poi
-      .where('ne_latitude > ?', lat)
-      .where('sw_latitude < ?', lat)
-      .where( 'sw_longitude < ?', lng)
-      .where('ne_longitude > ?', lng)
+      .where('ne_latitude >= ?', lat)
+      .where('sw_latitude <= ?', lat)
+      .where( 'sw_longitude <= ?', lng)
+      .where('ne_longitude >= ?', lng)
   end
 end

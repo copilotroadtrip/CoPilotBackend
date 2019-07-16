@@ -47,7 +47,12 @@ RSpec.describe Poi, type: :model do
       it 'can return no poi' do
         zero_poi = Poi.poi_at_location(-1,-1)
         expect(zero_poi.length).to eq(0)
+      end
 
+      it 'returns poi if on edge' do
+        one_poi = Poi.poi_at_location(0,0)
+        expect(one_poi.length).to eq(1)
+        expect(one_poi[0]).to eq(@poi_1)
       end
     end
   end
