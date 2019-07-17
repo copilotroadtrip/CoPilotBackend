@@ -26,10 +26,10 @@ class TripFacade
     destination_population = Poi.population_at_location(destination_lat, destination_lng)
 
     # Get weather of origin currently
-    origin_weather = ForecastSerializer.new(_weather_service_origin.json).currently
+    origin_weather = ForecastSerializer.new(_weather_service.get(origin_lat, origin_lng)).currently
 
     # Get weather of destination at X hours from now
-    destination_weather = ForecastSerializer.new(_weather_service_destination.json).hourly_in(duration_hours.round)
+    destination_weather = ForecastSerializer.new(_weather_service.get(destination_lat, destination_lng)).hourly_in(duration_hours.round)
 
     return {
             data: {
@@ -61,13 +61,9 @@ class TripFacade
       @_google_maps_service  ||= GoogleMapsService.new(origin, destination)
     end
 
-    def _weather_service_origin
-      @_weather_service_origin ||= DarkSkyService.new(
-        _google_maps_service.origin_lat, _google_maps_service.origin_lng)
+    def _weather_service
+      @_weather_service_origin ||= DarkSkyService.new()
     end
 
-    def _weather_service_destination
-      @_weather_service_destination ||= DarkSkyService.new(
-        _google_maps_service.destination_lat, _google_maps_service.destination_lng)
-    end
+
 end
