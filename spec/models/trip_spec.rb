@@ -13,6 +13,6 @@ RSpec.describe Trip, type: :model do
   it 'Trip creation generates token, sets status' do
     trip = Trip.create
     expect(trip.token).not_to eq(nil)
-    expect(trop.status).to eq("pending")
+    expect(trip.status).to eq("pending")
   end
 end
