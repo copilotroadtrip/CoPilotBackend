@@ -6,6 +6,8 @@ class TripFacade
     @destination = trip_params[:destination]
   end
 
+  ### This needs to be updated
+  
   def response
     # Origin / destination names from Google Maps
     start_address = _google_maps_service.start_address
