@@ -30,6 +30,7 @@ RSpec.describe Poi, type: :model do
     describe 'center' do
       it 'returns a Coordinate object' do
         center = @poi_1.center
+        expect(center).to be_a(Coordinate)
         expect(center.lat).to eq(1)
         expect(center.lng).to eq(1)
       end
