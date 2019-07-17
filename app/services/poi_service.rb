@@ -12,11 +12,6 @@ class PoiService
     @legs = build_legs
   end
 
-  def test
-    binding.pry
-  end
-
-
   def build_legs
     legs = []
     (1..(places.length-1)).each do |index|
