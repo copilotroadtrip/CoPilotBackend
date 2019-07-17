@@ -11,7 +11,7 @@ class ForecastSerializer
     return {
       'time' =>              c['time'],
       'summary' =>           c['summary'],
-      'icon' =>              c['icon'],
+      'icon' =>              c['icon'].gsub('-', '_'),
       'temperature' =>       c['temperature'],
       'precipProbability' => c['precipProbability'],
       'precipIntensity' =>   c['precipIntensity'],
@@ -33,7 +33,7 @@ class ForecastSerializer
     return {
       'time' =>              h['time'],
       'summary' =>           h['summary'],
-      'icon' =>              h['icon'],
+      'icon' =>              h['icon'].gsub('-', '_'),
       'temperature' =>       h['temperature'],
       'precipProbability' => h['precipProbability'],
       'precipIntensity' =>   h['precipIntensity'],
