@@ -99,6 +99,42 @@ describe 'Forecast Serializer Spec' do
     expect(forecast_in_1_hour['windBearing']).to        be_a(Float).or(be_an(Integer))
   end
 
+  it 'icons Happy Path - substitutes dashes with underscores' do
+    forecast_json = {
+      "currently" => {
+        "icon" => "partly-cloudy-day"
+        },
+      "hourly" => {
+        "data" => [{
+          "icon" => "clear-night"
+        }]
+      }
+    }
+
+    fs = ForecastSerializer.new(forecast_json)
+
+    expect(fs.currently['icon']).to eq('partly_cloudy_day')
+    expect(fs.hourly_in(0)['icon']).to eq('clear_night')
+  end
+
+  it 'icons Sad Path - does not parse icons with no dashes' do
+    forecast_json = {
+      "currently" => {
+        "icon" => "rain"
+        },
+      "hourly" => {
+        "data" => [{
+          "icon" => "snow"
+        }]
+      }
+    }
+
+    fs = ForecastSerializer.new(forecast_json)
+
+    expect(fs.currently['icon']).to eq('rain')
+    expect(fs.hourly_in(0)['icon']).to eq('snow')
+  end
+
   it 'Sad path - Dark Sky API only returns hourly up to 48 hours' do
     forecast_in_49_hours = @fs.hourly_in(49)
 
