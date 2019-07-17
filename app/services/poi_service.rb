@@ -105,7 +105,7 @@ class PoiService
 
     ### This needs to be fixed: correct step info not associated with each segment
     ### Also look into "normalizing" step speeds / distances with returned info
-    
+
     poi_info = []
     coord_info = []
     nested_poi = []
@@ -118,7 +118,11 @@ class PoiService
 
       prev_coord = []
 
-      coordinates.each do |raw_coord|
+      coordinates.each_with_index do |raw_coord, segment_index|
+        if segment_index == 1
+          step_info = StepInfo.new(step)
+        end
+
         coord = Coordinate.new(raw_coord)
         poi_list = Poi.poi_at_location(coord.lat, coord.lng)
         nested_poi = update_nested_poi(poi_list, nested_poi)
@@ -127,8 +131,6 @@ class PoiService
 
         prev_coord = coord
       end
-
-      step_info = StepInfo.new(step)
     end
 
     return [poi_info, coord_info, nested_poi]
