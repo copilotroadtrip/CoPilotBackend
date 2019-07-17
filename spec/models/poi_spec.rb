@@ -1,6 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe Poi, type: :model do
+  before :each do
+    @poi_1 = create(:poi,
+      sw_latitude: 0, sw_longitude: 0,ne_latitude: 2, ne_longitude: 2, population: 1_000
+    )
+    @poi_2 = create(:poi,
+      sw_latitude: 1, sw_longitude: 1,ne_latitude: 3, ne_longitude: 3, population: 2_000
+    )
+  end
+
   describe 'Validations' do
     it { should validate_presence_of :name }
     it { should validate_presence_of :ne_latitude }
@@ -17,16 +26,18 @@ RSpec.describe Poi, type: :model do
     it { should have_many :trip_pois }
     it { should have_many(:trips).through(:trip_pois) }
   end
+  describe 'Instance Methods' do
+    describe 'center' do
+      it 'returns a Coordinate object' do
+        center = @poi_1.center
+        expect(center).to be_a(Coordinate)
+        expect(center.lat).to eq(1)
+        expect(center.lng).to eq(1)
+      end
+    end
+  end
 
   describe 'Class Methods' do
-    before :each do
-      @poi_1 = create(:poi,
-        sw_latitude: 0, sw_longitude: 0,ne_latitude: 2, ne_longitude: 2, population: 1_000
-      )
-      @poi_2 = create(:poi,
-        sw_latitude: 1, sw_longitude: 1,ne_latitude: 3, ne_longitude: 3, population: 2_000
-      )
-    end
 
     describe 'poi_at_location' do
       it 'can return a single poi' do

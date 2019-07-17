@@ -19,4 +19,14 @@ class Poi < ApplicationRecord
     self.poi_at_location(lat, lng)
     .sum(:population)
   end
+
+  def center
+    lat_diff = ne_latitude - sw_latitude
+    mid_lat = ne_latitude - (lat_diff/2)
+
+    lng_diff = ne_longitude - sw_longitude
+    mid_lng = ne_longitude - (lng_diff/2)
+
+    Coordinate.new(mid_lat, mid_lng)
+  end
 end
