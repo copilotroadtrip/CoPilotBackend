@@ -6,7 +6,7 @@ describe 'Dark Sky Service Spec' do
      lat = 39.614431
      lng = -105.109927
 
-     service = DarkSkyService.new(lat, long)
+     service = DarkSkyService.new(lat, lng)
 
      expect(service.json).to be_a(Hash)
 

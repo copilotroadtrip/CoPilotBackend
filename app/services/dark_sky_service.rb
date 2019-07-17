@@ -3,7 +3,7 @@ class DarkSkyService
 
   attr_reader :latitude, :longitude
 
-  def initialize(latitude, longitude)
+  def initialize(latitude = nil, longitude = nil)
     @latitude = latitude
     @longitude = longitude
   end
@@ -12,6 +12,10 @@ class DarkSkyService
     @_conn ||= Faraday.new("https://api.darksky.net/forecast/#{ENV['DARK_SKY_APIKEY']}/") do |f|
       f.adapter Faraday.default_adapter
     end
+  end
+
+  def get(latitude, longitude)
+    JSON.parse(conn.get("#{latitude},#{longitude}").body)
   end
 
   def response
