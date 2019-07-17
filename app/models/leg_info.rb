@@ -6,6 +6,14 @@ class LegInfo
     @distance = parse_distance(distance_in_meters)
   end
 
+  def json_with_id(index)
+    {
+      distance: "#{distance.round} mi",
+      duration_in_hours: time,
+      id: index
+    }
+  end
+
   private
   def parse_time(seconds)
     seconds / 3600.0
@@ -14,4 +22,6 @@ class LegInfo
   def parse_distance(meters)
     meters / 1609.344
   end
+
+
 end
