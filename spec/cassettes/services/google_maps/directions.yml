@@ -21,11 +21,11 @@ http_interactions:
       Content-Type:
       - application/json; charset=UTF-8
       Date:
-      - Sun, 14 Jul 2019 18:29:26 GMT
+      - Wed, 17 Jul 2019 03:04:27 GMT
       Expires:
-      - Sun, 14 Jul 2019 18:59:26 GMT
+      - Wed, 17 Jul 2019 03:14:27 GMT
       Cache-Control:
-      - public, max-age=1800
+      - public, max-age=600
       Vary:
       - Accept-Language
       Server:
@@ -37,7 +37,7 @@ http_interactions:
       X-Frame-Options:
       - SAMEORIGIN
       Server-Timing:
-      - gfet4t7; dur=388
+      - gfet4t7; dur=379
       Alt-Svc:
       - quic=":443"; ma=2592000; v="46,43,39"
     body:
@@ -774,5 +774,5 @@ http_interactions:
            "status" : "OK"
         }
     http_version: 
-  recorded_at: Sun, 14 Jul 2019 18:29:24 GMT
+  recorded_at: Wed, 17 Jul 2019 03:04:27 GMT
 recorded_with: VCR 5.0.0
