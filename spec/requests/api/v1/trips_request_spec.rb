@@ -31,16 +31,17 @@ describe 'Trips API V1 requests', type: :request do
         expect(body['data']).to be_a(Hash)
         expect(body['data']['places']).to be_an(Array)
 
-        expect(body['data']['places'].first['name']).to be_a(String)
-        expect(body['data']['places'].last['name']).to be_a(String)
-
-        expect(body['data']['places'].first['weather']).to be_a(Hash)
-        expect(body['data']['places'].last['weather']).to be_a(Hash)
+        body['data']['places'].each do |place|
+          expect(place['name']).to be_a(String)
+          expect(place['weather']).to be_a(Hash)
+        end
 
         expect(body['data']['legs']).to be_an(Array)
-        expect(body['data']['legs'].first).to be_a(Hash)
-        expect(body['data']['legs'].first['distance']).to be_a(String)
-        expect(body['data']['legs'].first['duration_in_hours']).to be_a(Float)
+        body['data']['legs'].each do |leg|
+          expect(leg['distance']).to be_a(String)
+          expect(leg['duration_in_hours']).to be_a(Float)
+        end
+
       end
     end
   end
