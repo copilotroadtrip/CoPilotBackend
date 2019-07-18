@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_15_230740) do
+ActiveRecord::Schema.define(version: 2019_07_18_001051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,16 @@ ActiveRecord::Schema.define(version: 2019_07_15_230740) do
     t.string "total_area"
   end
 
+  create_table "trip_legs", force: :cascade do |t|
+    t.bigint "trip_id"
+    t.bigint "distance"
+    t.float "duration"
+    t.integer "sequence_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["trip_id"], name: "index_trip_legs_on_trip_id"
+  end
+
   create_table "trip_pois", force: :cascade do |t|
     t.bigint "trip_id"
     t.bigint "poi_id"
@@ -39,12 +49,31 @@ ActiveRecord::Schema.define(version: 2019_07_15_230740) do
     t.index ["trip_id"], name: "index_trip_pois_on_trip_id"
   end
 
+  create_table "trip_weathers", force: :cascade do |t|
+    t.integer "time"
+    t.string "summary"
+    t.string "icon"
+    t.float "temperature"
+    t.float "precipProbability"
+    t.float "precipIntensity"
+    t.float "windSpeed"
+    t.float "windGust"
+    t.integer "windBearing"
+    t.bigint "trip_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["trip_id"], name: "index_trip_weathers_on_trip_id"
+  end
+
   create_table "trips", force: :cascade do |t|
     t.string "token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 0
   end
 
+  add_foreign_key "trip_legs", "trips"
   add_foreign_key "trip_pois", "pois"
   add_foreign_key "trip_pois", "trips"
+  add_foreign_key "trip_weathers", "trips"
 end
