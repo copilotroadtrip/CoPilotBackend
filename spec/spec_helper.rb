@@ -12,6 +12,12 @@
 # the additional setup, and require it from the spec files that actually need
 # it.
 #
+
+# Sidekiq testing setup per: https://github.com/mperham/sidekiq/wiki/Testing
+# A test fake that pushes all jobs into a jobs array
+require 'sidekiq/testing'
+Sidekiq::Testing.fake!
+
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
