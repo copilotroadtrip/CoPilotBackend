@@ -29,23 +29,29 @@ describe 'Trips API V1 requests', type: :request do
         body = JSON.parse(response.body)
 
         expect(body['data']).to be_a(Hash)
+        expect(body['data']['trip_token']).to be_a(String)
         expect(body['data']['places']).to be_an(Array)
 
         body['data']['places'].each do |place|
-          expect(place['name']).to be_a(String)
-          expect(place['weather']).to be_a(Hash)
+          expect(place['location']).to        be_a(Hash)
+          expect(place['location']['lat']).to be_a(Float)
+          expect(place['location']['lng']).to be_a(Float)
+          expect(place['name']).to            be_a(String)
+          expect(place['state']).to           be_a(String)
+          expect(place['population']).to      be_a(Integer)
+          expect(place['weather']).to         be_a(Hash)
         end
 
         expect(body['data']['legs']).to be_an(Array)
         body['data']['legs'].each do |leg|
-          expect(leg['distance']).to be_a(String)
+          expect(leg['distance']).to          be_a(String)
           expect(leg['duration_in_hours']).to be_a(Float)
         end
-
       end
     end
 
-    it 'Happy Path - returns a successful response with intermediate POI' do
+    # Skipping this test since it is being rebuilt into the GET request
+    xit 'Happy Path - returns a successful response with intermediate POI' do
       VCR.use_cassette("requests/post_trips/ogden") do
 
         options_hash = {col_sep: ",", headers: true,
@@ -65,7 +71,6 @@ describe 'Trips API V1 requests', type: :request do
               state: hash[:state],
               land_area: hash[:land_area],
               total_area: hash[:total_area])
-
         end
 
 
