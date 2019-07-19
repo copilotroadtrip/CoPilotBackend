@@ -23,7 +23,7 @@ class TripFacade
 
   def origin_data
     {
-       "start_location": {
+       "location": {
            "lat": _directions.start_lat,
            "lng": _directions.start_lng
        },
@@ -42,7 +42,7 @@ class TripFacade
 
   def destination_data
     {
-       "end_location": {
+       "location": {
            "lat": _directions.end_lat,
            "lng": _directions.end_lng
        },
