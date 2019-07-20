@@ -48,9 +48,9 @@ Frontend Team
 `bundle exec sidekiq`
 
 
-## Database Schema
+## [Database Schema](https://dbdiagram.io/d/5d3372fbced98361d6dcd8f6)
 
-<img width="826" alt="CoPilotBackend database schema" src="https://user-images.githubusercontent.com/36040194/61190610-5aad0000-a65c-11e9-8d59-1ae6eaa262bb.png">
+<img width="826" alt="CoPilotBackend database schema" src="https://user-images.githubusercontent.com/36040194/61583736-633c8500-aaf9-11e9-9707-992f8164f89f.png">
 
 
 ## Endpoints
