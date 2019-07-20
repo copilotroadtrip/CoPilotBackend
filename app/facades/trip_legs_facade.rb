@@ -14,6 +14,12 @@ class TripLegsFacade
     end
   end
 
+  def legs
+    trip.trip_legs.map do |trip_leg|
+      trip_leg.to_json
+    end
+  end
+
   private
     attr_reader :trip
 end
