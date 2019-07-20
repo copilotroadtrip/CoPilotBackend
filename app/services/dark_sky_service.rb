@@ -14,7 +14,8 @@ class DarkSkyService
     end
   end
 
-  def get(latitude, longitude)
+  def get(latitude, longitude = nil)
+    latitude, longitude = latitude.to_a if longitude == nil
     JSON.parse(conn.get("#{latitude},#{longitude}").body)
   end
 
