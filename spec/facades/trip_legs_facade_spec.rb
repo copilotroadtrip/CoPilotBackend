@@ -77,4 +77,16 @@ describe 'Trip Legs Facade spec' do
       expect(legs[0][:duration_in_hours]).to eq(@leg_1.duration)
     end
   end
+
+  it 'Builds a response combining the poi and leg data' do
+    VCR.use_cassette("facades/trip_legs_facade/response") do
+      response = TripLegsFacade.new(@trip).response
+
+      expect(response).to        be_a Hash
+      expect(response[:data]).to be_a Hash
+
+      expect(response[:data][:places]).to be_an Array
+      expect(response[:data][:legs]).to   be_an Array
+    end
+  end
 end

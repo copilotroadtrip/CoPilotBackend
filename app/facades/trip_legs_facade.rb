@@ -3,6 +3,16 @@ class TripLegsFacade
     @trip = trip
   end
 
+  def response
+    {
+      data:
+        {
+          places: places,
+          legs: legs
+        }
+    }
+  end
+
   def places
     trip.pois.map do |poi|
       # This is only current weather,
