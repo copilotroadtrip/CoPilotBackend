@@ -6,9 +6,14 @@ class TripFacade
     @destination = trip_params[:destination]
     @trip = Trip.create
 
+
     # Add SidekiqWorker job here to build POIs and legs of trip
     # The worker will need the trip id/token and Google directions payload
     # Otherwise it will need to make a second Google API request
+
+    # @matt -- I think this is the right syntax -- Not sure
+
+    TripWorker.build_trip(_directions.steps)
   end
 
   def response
@@ -46,10 +51,6 @@ class TripFacade
 
 
   private
-
-    # def _poi_service
-    #   @_poi_service ||= PoiService.new(_directions.steps)
-    # end
 
     def _directions
       @_directions  ||= GoogleMapsService.new(origin, destination)
