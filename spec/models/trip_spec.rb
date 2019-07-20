@@ -7,6 +7,7 @@ RSpec.describe Trip, type: :model do
 
   describe 'Relationships' do
     it { should have_many :trip_pois }
+    it { should have_many :trip_legs }
     it { should have_many(:pois).through(:trip_pois) }
   end
 
