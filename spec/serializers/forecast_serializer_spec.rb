@@ -105,7 +105,9 @@ describe 'Forecast Serializer Spec' do
         "icon" => "partly-cloudy-day"
         },
       "hourly" => {
-        "data" => [{
+        "data" => [
+          {},
+          {
           "icon" => "clear-night"
         }]
       }
@@ -114,7 +116,7 @@ describe 'Forecast Serializer Spec' do
     fs = ForecastSerializer.new(forecast_json)
 
     expect(fs.currently['icon']).to eq('partly_cloudy_day')
-    expect(fs.hourly_in(0)['icon']).to eq('clear_night')
+    expect(fs.hourly_in(1)['icon']).to eq('clear_night')
   end
 
   it 'icons Sad Path - does not parse icons with no dashes' do
@@ -123,7 +125,9 @@ describe 'Forecast Serializer Spec' do
         "icon" => "rain"
         },
       "hourly" => {
-        "data" => [{
+        "data" => [
+          {},
+          {
           "icon" => "snow"
         }]
       }
@@ -132,7 +136,7 @@ describe 'Forecast Serializer Spec' do
     fs = ForecastSerializer.new(forecast_json)
 
     expect(fs.currently['icon']).to eq('rain')
-    expect(fs.hourly_in(0)['icon']).to eq('snow')
+    expect(fs.hourly_in(1)['icon']).to eq('snow')
   end
 
   it 'Sad path - Dark Sky API only returns hourly up to 48 hours' do
