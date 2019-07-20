@@ -13,7 +13,7 @@ class TripFacade
 
     # @matt -- I think this is the right syntax -- Not sure
 
-    TripWorker.build_trip(_directions.steps)
+    PoiService.new(_directions.steps).build_trip
   end
 
   def response
