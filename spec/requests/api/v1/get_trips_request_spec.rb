@@ -40,6 +40,9 @@ describe 'Trips API V1 requests', type: :request do
 
       expect(response).to be_successful
       expect(response.status).to eq(200)
+
+      # See trip_legs_facade_spec.rb for more thorough
+      # testing on the payload of this response
     end
   end
 end
