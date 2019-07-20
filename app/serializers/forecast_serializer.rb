@@ -6,19 +6,7 @@ class ForecastSerializer
   end
 
   def currently
-    c = forecast_json['currently']
-
-    return {
-      'time' =>              c['time'],
-      'summary' =>           c['summary'],
-      'icon' =>              c['icon'].gsub('-', '_'),
-      'temperature' =>       c['temperature'],
-      'precipProbability' => c['precipProbability'],
-      'precipIntensity' =>   c['precipIntensity'],
-      'windSpeed' =>         c['windSpeed'],
-      'windGust' =>          c['windGust'],
-      'windBearing' =>       c['windBearing']
-    }
+    hourly_in(0)
   end
 
   def hourly_in(hours_from_now)
@@ -26,10 +14,12 @@ class ForecastSerializer
       return {
         'error' => 'Weather API only returns out 48 hours'
       }
+    elsif hours_from_now == 0
+      h = forecast_json['currently']
+    else
+      h = forecast_json['hourly']['data'][hours_from_now]
     end
-
-    h = forecast_json['hourly']['data'][hours_from_now]
-
+    
     return {
       'time' =>              h['time'],
       'summary' =>           h['summary'],
