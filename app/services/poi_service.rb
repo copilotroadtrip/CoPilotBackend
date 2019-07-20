@@ -19,7 +19,7 @@ class PoiService
       prev_poi_start = find_poi_info(places[(index -1)]).start_coord
       seconds = inter_coord_time(poi_start, prev_poi_start)
       meters = inter_coord_dist(poi_start, prev_poi_start)
-      legs << LegInfo.new(seconds, meters)
+      legs << LegInfo.new({"duration"=>{"value"=>seconds}, "distance"=>{"value"=>meters}})
     end
 
     return legs
