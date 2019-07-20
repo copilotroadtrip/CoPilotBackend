@@ -10,6 +10,17 @@ class Coordinate
     end
   end
 
+  def to_json
+    {
+      lat: lat,
+      lng: lng
+    }
+  end
+
+  def to_a
+    [lat,lng]
+  end
+  
   def ==(other_object)
     return false if other_object.class != Coordinate
     return lat == other_object.lat && lng == other_object.lng
