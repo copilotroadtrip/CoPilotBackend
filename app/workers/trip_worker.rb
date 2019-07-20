@@ -8,4 +8,9 @@ class TripWorker
   def self.one
     1
   end
+
+  def self.build_trip(steps)
+
+
+  end
 end
