@@ -15,69 +15,44 @@ class TripFacade
     return {
       data: {
         trip_token: trip.token,
-        places: [origin_data, destination_data],
-        legs: [legs_data]
+        places: [ origin_data, destination_data ],
+        legs: [ leg_data.json_with_id(1) ]
       }
     }
   end
 
   def origin_data
-    {
-       "location": {
-           "lat": _directions.start_lat,
-           "lng": _directions.start_lng
-       },
-       "name": _directions.start_address,
-       "state": Poi.poi_at_location(_directions.start_lat, _directions.start_lng)[0].state,
-       "population": Poi.population_at_location(_directions.start_lat, _directions.start_lng),
-       "weather": origin_weather
-   }
+
+    origin_poi  = Poi.poi_at_location(_directions.start_lat, _directions.start_lng)
+                          .order(population: "DESC")
+                          .first
+
+    PoiSerializer.new(origin_poi).to_json_with_timing(0)
   end
 
-  def origin_weather
-    weather_data = _weather_service.get(_directions.start_lat, _directions.start_lng)
-
-    ForecastSerializer.new(weather_data).currently
-  end
 
   def destination_data
-    {
-       "location": {
-           "lat": _directions.end_lat,
-           "lng": _directions.end_lng
-       },
-       "name": _directions.end_address,
-       "state": Poi.poi_at_location(_directions.end_lat, _directions.end_lng)[0].state,
-       "population": Poi.population_at_location(_directions.end_lat, _directions.end_lng),
-       "weather": destination_weather
-   }
+
+    destination_poi  = Poi.poi_at_location(_directions.end_lat, _directions.end_lng)
+                          .order(population: "DESC")
+                          .first
+
+    PoiSerializer.new(destination_poi).to_json_with_timing(leg_data.time.round)
   end
 
-  def destination_weather
-    weather_data = _weather_service.get(_directions.end_lat, _directions.end_lng)
-    duration_hours = _directions.duration_hours
-    # Get weather of destination at X hours from now
-    ForecastSerializer.new(weather_data).hourly_in(duration_hours.round)
+  def leg_data
+    @_leg_data ||= LegInfo.new(_directions.leg_info)
   end
 
-  def legs_data
-    {
-      "distance": _directions.distance_text,
-      "duration_in_hours": _directions.duration_hours
-    }
-  end
 
   private
 
-    def _poi_service
-      @_poi_service ||= PoiService.new(_directions.steps)
-    end
+    # def _poi_service
+    #   @_poi_service ||= PoiService.new(_directions.steps)
+    # end
 
     def _directions
       @_directions  ||= GoogleMapsService.new(origin, destination)
     end
 
-    def _weather_service
-      @_weather_service_origin ||= DarkSkyService.new()
-    end
 end
