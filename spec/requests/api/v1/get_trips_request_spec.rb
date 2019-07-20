@@ -31,11 +31,15 @@ describe 'Trips API V1 requests', type: :request do
       expect(body['message']).to eq('Trip pending')
     end
 
-    xit 'returns a successful response' do
+    it 'status 200 if trip.status is ready' do
+      @trip.status = 1
+      @trip.save
+      expect(@trip.status).to eq('ready')
+
       get '/api/v1/trips/', params: @valid_params
 
       expect(response).to be_successful
-      expect(response.status).to eq(201)
+      expect(response.status).to eq(200)
     end
   end
 end
