@@ -40,6 +40,8 @@ describe 'Trips API V1 requests', type: :request do
           expect(place['state']).to           be_a(String)
           expect(place['population']).to      be_a(Integer)
           expect(place['weather']).to         be_a(Hash)
+          expect(place['sunrise_time']).to    be_a(Integer) # UTC time as an integer
+          expect(place['sunset_time']).to     be_a(Integer)
         end
 
         expect(body['data']['legs']).to be_an(Array)

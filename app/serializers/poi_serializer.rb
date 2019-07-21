@@ -18,6 +18,8 @@ class PoiSerializer
       state: state,
       population: population,
       weather: weather,
+      sunrise_time: sunrise_time,
+      sunset_time: sunset_time
     }
   end
 
@@ -34,5 +36,15 @@ class PoiSerializer
 
   def _weather_service
     @_weather_service ||= DarkSkyService.new
+  end
+
+  # Calculates sunrise and sunset time for a given lng/lat
+  # Currently returns UTC time as an integer
+  def sunrise_time
+    SunTimes.new.rise(Date.today, location.lat, location.lng).to_i
+  end
+
+  def sunset_time
+    SunTimes.new.set(Date.today, location.lat, location.lng).to_i
   end
 end
