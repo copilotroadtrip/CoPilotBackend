@@ -2,7 +2,6 @@ class PoiSerializer
   attr_reader :name, :population, :weather, :id, :state, :location
 
   def initialize(poi)
-    # binding.pry
     @id = poi.id
     @location = poi.center
     @name = poi.name
@@ -14,7 +13,7 @@ class PoiSerializer
   def to_json
     {
       id: id,
-      location: location,
+      location: location.to_json,
       name: name,
       state: state,
       population: population,

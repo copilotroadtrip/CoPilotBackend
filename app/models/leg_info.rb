@@ -22,6 +22,4 @@ class LegInfo
   def parse_distance(meters)
     meters / 1609.344
   end
-
-
 end
