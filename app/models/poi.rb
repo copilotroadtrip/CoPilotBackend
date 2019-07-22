@@ -8,16 +8,22 @@ class Poi < ApplicationRecord
                         :sw_latitude, :sw_longitude
 
   def self.poi_at_location(lat, lng)
-    Poi
-      .where('ne_latitude >= ?', lat)
-      .where('sw_latitude <= ?', lat)
-      .where( 'sw_longitude <= ?', lng)
-      .where('ne_longitude >= ?', lng)
+    pois =  Poi
+              .where('ne_latitude >= ?', lat)
+              .where('sw_latitude <= ?', lat)
+              .where( 'sw_longitude <= ?', lng)
+              .where('ne_longitude >= ?', lng)
+    return nil if pois == []
+    pois
   end
 
   def self.population_at_location(lat, lng)
-    self.poi_at_location(lat, lng)
-    .sum(:population)
+    at_location = self.poi_at_location(lat, lng)
+    if at_location
+      return at_location.sum(:population)
+    else
+      return 0
+    end
   end
 
   def center
