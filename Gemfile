@@ -41,6 +41,9 @@ gem 'polylines'
 # CSV for seeding database
 gem 'csv'
 
+# Gem that Calculates sunrise and sunset times based on longitude/latitude
+gem 'ruby-sun-times'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

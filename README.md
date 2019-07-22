@@ -1,18 +1,21 @@
-# CoPilotBackend
+# Co-Pilot
 
-Rails API for CoPilot - Road trip data consolidated in one application
 
-Live API Link: [https://copilot-backend.herokuapp.com/]
+**Co-Pilot** is a full stack application that allows users who are road tripping to keep track of all the cities and towns they
+will encounter on their journey. Information regarding the distance and time is displayed between each city. And upon
+clicking a particular city users can find weather, hotel, gas, food, and google maps information.
+
+
+Live CoPilotBackend API Link: [https://copilot-backend.herokuapp.com/]
+
 Frontend React Native application: [https://github.com/copilotroadtrip/Co-Pilot]
 
 
 ## Tech Stack
 
-Backend
-- Rails 5.2.3
+* The back end was built with Rails, RSpec, Postgres, Google Maps API, Darksky API, and Census.gov.
 
-Frontend
-- React Native
+* The front end was built in Javascript with React-Native. Jest/Enzyme were used for testing and Expo was used as a simulator to build this project.
 
 ## Code Status
 
@@ -48,9 +51,9 @@ Frontend Team
 `bundle exec sidekiq`
 
 
-## Database Schema
+## [Database Schema](https://dbdiagram.io/d/5d3372fbced98361d6dcd8f6)
 
-<img width="826" alt="CoPilotBackend database schema" src="https://user-images.githubusercontent.com/36040194/61190610-5aad0000-a65c-11e9-8d59-1ae6eaa262bb.png">
+<img width="826" alt="CoPilotBackend database schema" src="https://user-images.githubusercontent.com/36040194/61583736-633c8500-aaf9-11e9-9707-992f8164f89f.png">
 
 
 ## Endpoints
@@ -77,56 +80,60 @@ Example body:
 Example Response:
 ```json
 {
-    "data": {
-        "trip_token": "random_string_token",
-        "places": [
-            {
-                "location": {
-                    "lat": 39.7411598,
-                    "lng": -104.9879112
-                },
-                "name": "Denver, CO, USA",
-                "state": "CO",
-                "population": 716492,
-                "weather": {
-                    "time": 1563574427,
-                    "summary": "Partly Cloudy",
-                    "icon": "partly_cloudy_day",
-                    "temperature": 99.4,
-                    "precipProbability": 0,
-                    "precipIntensity": 0,
-                    "windSpeed": 4.85,
-                    "windGust": 9.73,
-                    "windBearing": 26
-                }
-            },
-            {
-                "location": {
-                    "lat": 39.6400516,
-                    "lng": -106.3749391
-                },
-                "name": "Vail, CO 81657, USA",
-                "state": "CO",
-                "population": 5450,
-                "weather": {
-                    "time": 1563580800,
-                    "summary": "Clear",
-                    "icon": "clear_day",
-                    "temperature": 82.5,
-                    "precipProbability": 0,
-                    "precipIntensity": 0,
-                    "windSpeed": 9.07,
-                    "windGust": 14.96,
-                    "windBearing": 283
-                }
-            }
-        ],
-        "legs": [
-            {
-                "distance": "97.1 mi",
-                "duration_in_hours": 1.7422222222222221
-            }
-        ]
-    }
+	"data": {
+		"trip_token": "ZxVy6TFrafZNyLoUjckMxdkH",
+		"places": [{
+				"id": 1739,
+				"location": {
+					"lat": 39.764335,
+					"lng": -104.855113
+				},
+				"name": "Denver",
+				"state": "CO",
+				"population": 716492,
+				"weather": {
+					"time": 1563587675,
+					"summary": "Partly Cloudy",
+					"icon": "partly_cloudy_day",
+					"temperature": 93.84,
+					"precipProbability": 0,
+					"precipIntensity": 0,
+					"windSpeed": 4.98,
+					"windGust": 11.03,
+					"windBearing": 76
+				},
+				"sunrise_time": 1563709708,
+				"sunset_time": 1563675761
+			},
+			{
+				"id": 1740,
+				"location": {
+					"lat": 47.608715000000004,
+					"lng": -122.339798
+				},
+				"name": "Seattle",
+				"state": "WA",
+				"population": 744955,
+				"weather": {
+					"time": 1563656400,
+					"summary": "Clear",
+					"icon": "clear_day",
+					"temperature": 74.52,
+					"precipProbability": 0,
+					"precipIntensity": 0,
+					"windSpeed": 8.77,
+					"windGust": 10.46,
+					"windBearing": 350
+				},
+				"sunrise_time": 1563712401,
+				"sunset_time": 1563681451
+			}
+		],
+		"legs": [{
+			"distance": "1316 mi",
+			"duration_in_hours": 19.673055555555557,
+			"id": 1
+		}]
+	}
 }
 ```

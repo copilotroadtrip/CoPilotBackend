@@ -167,6 +167,7 @@ GEM
       rspec-mocks (~> 3.8.0)
       rspec-support (~> 3.8.0)
     rspec-support (3.8.2)
+    ruby-sun-times (0.1.5)
     ruby_dep (1.5.0)
     rubyzip (1.2.3)
     safe_yaml (1.0.5)
@@ -232,6 +233,7 @@ DEPENDENCIES
   rails (~> 5.2.3)
   redis (~> 4.0)
   rspec-rails
+  ruby-sun-times
   shoulda-matchers
   sidekiq
   simplecov
