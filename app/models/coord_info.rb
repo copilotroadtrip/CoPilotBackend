@@ -4,6 +4,9 @@ class CoordInfo
   def initialize(coord, step)
     @coord = coord
     @step = step
+
+    # Approximations for duration and distance assumes coordinates are equally
+    # spread out along a "step"
     @approx_duration = step.time / (step.coordinate_count - 1.0)
     @approx_distance = step.dist / (step.coordinate_count - 1.0)
   end
@@ -17,6 +20,9 @@ class CoordInfo
     }.to_json
   end
 
+
+
+  # Below are lat/lng calculation methods, kept for now, just in case
 
   # private
 

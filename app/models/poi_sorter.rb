@@ -1,5 +1,7 @@
 class PoiSorter
   attr_reader :keep, :discard
+
+  # Given a list of POIs, find the largest
   def initialize(poi_list)
     @keep, @discard = sort_poi(poi_list)
   end

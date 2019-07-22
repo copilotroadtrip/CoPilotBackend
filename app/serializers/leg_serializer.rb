@@ -1,6 +1,9 @@
 class LegSerializer
   attr_reader :time, :distance
 
+  ### THIS SHOULD PROBSBLY BE DEPRECATED
+  ### Currently this is only used in the initial POST response
+  ### But 'trip_legs' already has a `to_json`
   def initialize(time, distance, trip_id, sequence_number)
     @time = time
     @distance = meters_to_miles(distance)

@@ -20,9 +20,10 @@ class Coordinate
   def to_a
     [lat,lng]
   end
-  
-  def ==(other_object)
-    return false if other_object.class != Coordinate
-    return lat == other_object.lat && lng == other_object.lng
-  end
+
+  # Custom comparaison between coordinates, obviated with using coordinate indicies
+  # def ==(other_object)
+  #   return false if other_object.class != Coordinate
+  #   return lat == other_object.lat && lng == other_object.lng
+  # end
 end
