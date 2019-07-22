@@ -1,19 +1,20 @@
 class TripFacade
-  attr_reader :origin, :destination, :trip
+  attr_reader :origin, :destination, :trip, :steps
 
   def initialize(trip_params)
     @origin = trip_params[:origin]
     @destination = trip_params[:destination]
     @trip = Trip.create
-
+    @steps = _directions.steps
 
     # Add SidekiqWorker job here to build POIs and legs of trip
     # The worker will need the trip id/token and Google directions payload
     # Otherwise it will need to make a second Google API request
 
-    # @matt -- I think this is the right syntax -- Not sure
+    # @matt -- The below does everything -- parsing and loading into the db...
+    # but it blocks "response" from being immediately returned
 
-    PoiService.new(_directions.steps).build_trip
+    # TripService.new(_directions.steps, @trip.id)
   end
 
   def response
@@ -21,7 +22,7 @@ class TripFacade
       data: {
         trip_token: trip.token,
         places: [ origin_data, destination_data ],
-        legs: [ leg_data.json_with_id(1) ]
+        legs: [ leg_data.to_json ]
       }
     }
   end
@@ -46,7 +47,7 @@ class TripFacade
   end
 
   def leg_data
-    @_leg_data ||= LegInfo.new(_directions.leg_info)
+    LegSerializer.from_json(_directions.leg_info, @trip.id, 1)
   end
 
 
