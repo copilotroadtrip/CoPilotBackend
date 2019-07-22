@@ -1,6 +1,12 @@
 class Api::V1::TripsController < ActionController::API
   def create
-    render json: TripFacade.new(trip_params).response, status: 201
+    facade = TripFacade.new(trip_params)
+    render json: facade.response, status: 201
+
+    # @matt, the below line of code does get run, but I don't think the render
+    # returns before it runs
+    
+    # TripService.new(facade.steps, facade.trip.id)
   end
 
   private

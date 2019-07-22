@@ -2,7 +2,6 @@ class PoiSerializer
   attr_reader :name, :population, :weather, :id, :state, :location
 
   def initialize(poi)
-    # binding.pry
     @id = poi.id
     @location = poi.center
     @name = poi.name
