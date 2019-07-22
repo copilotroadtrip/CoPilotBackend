@@ -1,13 +1,12 @@
 class PoiInfo
   attr_reader :poi, :start_coord, :end_coord
-  def initialize(poi, coord)
+  def initialize(poi, coordinate_index)
     @poi = poi
-    raise "Not Coordinate Object" if coord.class != Coordinate
-    @start_coord = coord
-    @end_coord = coord
+    @start_coord = coordinate_index
+    @end_coord = coordinate_index
   end
 
-  def update_end(coord)
-    @end_coord = coord
+  def update(coordinate_index)
+    @end_coord = coordinate_index
   end
 end
