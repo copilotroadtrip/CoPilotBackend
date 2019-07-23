@@ -10,7 +10,10 @@ class TripFacade
   end
 
   def request_trip_data_from_microservice
-    TripWorker.perform_async(_directions.steps, @trip.token)
+    @trip.steps = _directions.steps.to_json
+    @trip.save
+
+    TripWorker.perform_async(@trip.id)
   end
 
   def response
