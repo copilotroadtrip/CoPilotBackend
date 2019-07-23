@@ -48,7 +48,7 @@ describe 'Trip Legs Facade spec' do
   end
   it 'Builds a response of trip data on places' do
     VCR.use_cassette("facades/trip_legs_facade/places") do
-      places = TripLegsFacade.new(@trip).places
+      places = FullTripFacade.new(@trip).places
 
       expect(places).to be_an(Array)
       expect(places.length).to eq(@trip.pois.length)
@@ -66,7 +66,7 @@ describe 'Trip Legs Facade spec' do
 
   it 'Builds a response of trip data on legs' do
     VCR.use_cassette("facades/trip_legs_facade/legs") do
-      legs = TripLegsFacade.new(@trip).legs
+      legs = FullTripFacade.new(@trip).legs
 
       expect(legs).to        be_an Array
       expect(legs.length).to eq(@trip.trip_legs.length)
@@ -80,7 +80,7 @@ describe 'Trip Legs Facade spec' do
 
   it 'Builds a response combining the poi and leg data' do
     VCR.use_cassette("facades/trip_legs_facade/response") do
-      response = TripLegsFacade.new(@trip).response
+      response = FullTripFacade.new(@trip).response
 
       expect(response).to        be_a Hash
       expect(response[:data]).to be_a Hash
