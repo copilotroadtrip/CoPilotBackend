@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_18_001051) do
+ActiveRecord::Schema.define(version: 2019_07_23_012535) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,11 +41,15 @@ ActiveRecord::Schema.define(version: 2019_07_18_001051) do
 
   create_table "trip_pois", force: :cascade do |t|
     t.bigint "trip_id"
-    t.bigint "poi_id"
     t.integer "sequence_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["poi_id"], name: "index_trip_pois_on_poi_id"
+    t.integer "population"
+    t.string "state"
+    t.string "name"
+    t.float "lat"
+    t.float "lng"
+    t.float "time_to_poi"
     t.index ["trip_id"], name: "index_trip_pois_on_trip_id"
   end
 
@@ -73,7 +77,6 @@ ActiveRecord::Schema.define(version: 2019_07_18_001051) do
   end
 
   add_foreign_key "trip_legs", "trips"
-  add_foreign_key "trip_pois", "pois"
   add_foreign_key "trip_pois", "trips"
   add_foreign_key "trip_weathers", "trips"
 end
