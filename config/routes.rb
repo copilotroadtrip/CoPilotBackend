@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       resources :trips, only: [:create, :index]
       patch "/trips", to: 'trips#update'
 
+      resources :trip_pois, only: [:create]
       resources :trip_legs, only: [:create]
     end
   end
