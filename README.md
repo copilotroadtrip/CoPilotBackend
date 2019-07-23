@@ -158,3 +158,30 @@ Unsuccessful response, status 404
 ```json
 { "message": "Invalid Token"}
 ```
+
+## POST /api/v1/trip_pois
+
+Body:
+```json
+"token": <String>,
+"trip_poi": {
+     "poi_id": <Integer>
+     "name": <String>,
+     "state": <String>,
+     "population": <Integer>
+     "lat": <Float>,
+     "lng": <Float>
+     "sequence_number": <Integer>,
+     "time_to_poi": <Float>
+}
+```
+
+Successful response, status: 201
+```json
+{ "message": "Success" }
+```
+
+Unsuccessful response, status 404
+```json
+{ "message": "Invalid Token"}
+```
