@@ -10,7 +10,7 @@ class InitialTripFacade
   end
 
   def request_trip_data_from_microservice
-    @trip.steps = _directions.steps.to_json
+    @trip.steps = _directions.steps
     @trip.save
 
     TripWorker.perform_async(@trip.id)
