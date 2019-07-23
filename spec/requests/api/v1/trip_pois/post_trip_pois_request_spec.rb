@@ -40,5 +40,20 @@ describe 'Trip Pois API V1 requests', type: :request do
       expect(trip_leg.sequence_number).to eq(valid_params[:trip_poi][:sequence_number])
       expect(trip_leg.time_to_poi).to eq(valid_params[:trip_poi][:time_to_poi])
     end
+
+    it 'Sad Path - invalid params returns an error message' do
+      trip = Trip.create
+
+      valid_params = {
+        token: 'invalidToken'
+      }
+
+      post '/api/v1/trip_pois', params: valid_params
+
+      expect(response).to_not be_successful
+      expect(response.status).to eq(404)
+
+      expect(trip.trip_pois.count).to eq(0)
+    end
   end
 end
