@@ -1,13 +1,15 @@
 class TripWorker
   include Sidekiq::Worker
 
-  def perform(steps, trip_token)
-    url = 'https://poi-microservice.herokuapp.com/api/v1/build_trip'
+  def perform(trip_id)
+    trip = Trip.find(trip_id)
 
     body = {
-      steps: steps,
-      token: trip_token
+      steps: trip.steps,
+      token: trip.token
     }
+
+    url = 'https://poi-microservice.herokuapp.com/api/v1/build_trip'
 
     Faraday.post(url, body.to_json, "Content-Type" => "application/json")
   end
