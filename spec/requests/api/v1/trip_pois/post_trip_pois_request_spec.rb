@@ -4,10 +4,16 @@ describe 'Trip Pois API V1 requests', type: :request do
   describe 'POST /api/v1/trip_pois' do
     it 'Happy Path - valid params creates a trip_poi' do
       trip = Trip.create
+      poi = create(:poi,
+        name: "Denver", state: "CO",
+        ne_latitude: 39.914247, ne_longitude: -104.600302,
+        sw_latitude: 39.614423, sw_longitude: -105.109924,
+        population: 716492, land_area: "397024697", total_area: "401270097")
 
       valid_params = {
         token: trip.token,
         trip_poi: {
+         poi_id: poi.id,
          name: 'Denver',
          state: 'CO',
          population: 716492,
@@ -23,7 +29,6 @@ describe 'Trip Pois API V1 requests', type: :request do
       expect(response).to be_successful
       expect(response.status).to eq(201)
 
-      require "pry"; binding.pry
       expect(trip.trip_pois.count).to eq(1)
       trip_leg = trip.trip_pois.first
 

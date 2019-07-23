@@ -6,7 +6,7 @@ class Api::V1::TripPoisController < ActionController::API
       render json: { message: 'Invalid Token'}, status: 404
     else
       trip.trip_pois.create(new_trip_poi_params)
-require "pry"; binding.pry
+
       render json: { message: 'Success' }, status: 201
     end
   end
@@ -18,6 +18,7 @@ require "pry"; binding.pry
 
     def new_trip_poi_params
       params.require(:trip_poi).permit(
+        :poi_id,
         :name,
         :state,
         :population,
