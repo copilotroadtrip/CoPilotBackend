@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :trips, only: [:create, :index]
       patch "/trips", to: 'trips#update'
+
+      resources :trip_pois, only: [:create]
     end
   end
 end

@@ -23,6 +23,7 @@ describe 'Trip Pois API V1 requests', type: :request do
       expect(response).to be_successful
       expect(response.status).to eq(201)
 
+      require "pry"; binding.pry
       expect(trip.trip_pois.count).to eq(1)
       trip_leg = trip.trip_pois.first
 
