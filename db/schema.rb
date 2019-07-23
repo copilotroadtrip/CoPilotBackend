@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_18_001051) do
+ActiveRecord::Schema.define(version: 2019_07_23_012051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,12 @@ ActiveRecord::Schema.define(version: 2019_07_18_001051) do
     t.integer "sequence_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "population"
+    t.string "state"
+    t.string "name"
+    t.float "lat"
+    t.float "lng"
+    t.float "time_to_poi"
     t.index ["poi_id"], name: "index_trip_pois_on_poi_id"
     t.index ["trip_id"], name: "index_trip_pois_on_trip_id"
   end
