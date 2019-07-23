@@ -6,14 +6,11 @@ class TripFacade
     @destination = trip_params[:destination]
     @trip = Trip.create
 
+    request_trip_data_from_microservice
+  end
 
-    # Add SidekiqWorker job here to build POIs and legs of trip
-    # The worker will need the trip id/token and Google directions payload
-    # Otherwise it will need to make a second Google API request
-
-    # @matt -- I think this is the right syntax -- Not sure
-
-    TripWorker.build_trip(_directions.steps)
+  def request_trip_data_from_microservice
+    TripWorker.perform_async(_directions.steps, @trip.token)
   end
 
   def response
