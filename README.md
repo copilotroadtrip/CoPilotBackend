@@ -310,7 +310,7 @@ Body:
 ```json
 "token": <String>,
 "trip_poi": {
-     "poi_id": "<Integer>"
+     "poi_id": "<Integer>",
      "name": "<String>",
      "state": "<String>",
      "population": "<Integer>,"
