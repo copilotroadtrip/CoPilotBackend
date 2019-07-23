@@ -58,7 +58,7 @@ Frontend Team
 
 ## Endpoints
 
-`POST /api/v1/trips`
+## `POST /api/v1/trips`
 
 - Create a new trip with an origin and destination city
 - Weather information comes from from [Dark Sky API](https://darksky.net/dev/docs)
@@ -136,4 +136,25 @@ Example Response:
 		}]
 	}
 }
+```
+
+
+## PATCH `/api/v1/trips`
+
+Allows for updating trip status to ready.
+
+Required body:
+```json
+"token": "tripToken",
+"status": "ready"
+```
+
+Successful response, status: 200
+```json
+{ "message": "Success" }
+```
+
+Unsuccessful response, status 404
+```json
+{ "message": "Invalid Token"}
 ```

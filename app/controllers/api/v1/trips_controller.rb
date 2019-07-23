@@ -21,6 +21,19 @@ class Api::V1::TripsController < ActionController::API
     end
   end
 
+  def update
+    trip = Trip.find_by(token: update_params[:token])
+
+    if !trip
+      render json: { message: 'Invalid Token'}, status: 404
+    else
+      trip.status = 'ready'
+      trip.save
+
+      render json: { message: 'Success' }, status: 200
+    end
+  end
+
   private
     def trip_params
       params.permit(:origin, :destination)
@@ -28,5 +41,9 @@ class Api::V1::TripsController < ActionController::API
 
     def trip_token_params
       params.permit(:token)
+    end
+
+    def update_params
+      params.permit(:token, :status)
     end
 end
