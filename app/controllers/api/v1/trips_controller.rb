@@ -1,6 +1,6 @@
 class Api::V1::TripsController < ActionController::API
   def create
-    render json: TripFacade.new(trip_params).response, status: 201
+    render json: InitialTripFacade.new(trip_params).response, status: 201
   end
 
   def index
@@ -17,7 +17,7 @@ class Api::V1::TripsController < ActionController::API
 
     # If valid trip AND trip.status == "Ready", return all POIs and Legs
     elsif trip.ready?
-      render json: TripLegsFacade.new(trip).response, status: 200
+      render json: FullTripFacade.new(trip).response, status: 200
     end
   end
 

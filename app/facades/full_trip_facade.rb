@@ -1,4 +1,4 @@
-class TripLegsFacade
+class FullTripFacade
   def initialize(trip)
     @trip = trip
   end
