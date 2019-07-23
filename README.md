@@ -159,6 +159,7 @@ Unsuccessful response, status 404
 { "message": "Invalid Token"}
 ```
 
+
 ## POST /api/v1/trip_pois
 
 Body:
@@ -184,4 +185,25 @@ Successful response, status: 201
 Unsuccessful response, status 404
 ```json
 { "message": "Invalid Token"}
+
+
+## POST /api/v1/trip_legs
+
+Body:
+
+```json
+"token": <string>,
+"distance": <Integer>,
+"duration": <Float>,
+"sequence_number": <Integer>
+```
+
+If successful, response, status: 201
+```json
+ { "message": "Success" }
+```
+
+If unsuccessful, response, status: 404
+```json
+{ "message": "Invalid Token'"
 ```
