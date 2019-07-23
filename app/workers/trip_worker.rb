@@ -2,7 +2,7 @@ class TripWorker
   include Sidekiq::Worker
 
   def perform(trip_id)
-    trip = Trip.find(trip_id)
+    trip = Trip.find(trip_id.to_i)
 
     body = {
       steps: trip.steps,
