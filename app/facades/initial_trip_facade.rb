@@ -1,4 +1,4 @@
-class TripFacade
+class InitialTripFacade
   attr_reader :origin, :destination, :trip
 
   def initialize(trip_params)

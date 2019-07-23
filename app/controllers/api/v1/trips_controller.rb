@@ -1,6 +1,6 @@
 class Api::V1::TripsController < ActionController::API
   def create
-    render json: TripFacade.new(trip_params).response, status: 201
+    render json: InitialTripFacade.new(trip_params).response, status: 201
   end
 
   def index
