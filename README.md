@@ -313,7 +313,7 @@ Body:
      "poi_id": "<Integer>",
      "name": "<String>",
      "state": "<String>",
-     "population": "<Integer>,"
+     "population": "<Integer>",
      "lat": "<Float>",
      "lng": "<Float>",
      "sequence_number": "<Integer>",
