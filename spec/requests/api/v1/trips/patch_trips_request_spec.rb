@@ -6,7 +6,7 @@ describe 'Trips API V1 requests', type: :request do
       trip = Trip.create
 
       valid_params = {
-        "token": "tripToken",
+        "token": trip.token,
         "status": "ready"
       }
 
@@ -14,10 +14,30 @@ describe 'Trips API V1 requests', type: :request do
 
       patch '/api/v1/trips', params: valid_params
 
+      trip.reload
       expect(trip.status).to eq('ready')
 
       expect(response).to be_successful
       expect(response.status).to eq(200)
+    end
+
+    it 'Sad Path - returns an invalid token message' do
+      trip = Trip.create
+
+      invalid_params = {
+        "token": "invalid token",
+        "status": "ready"
+      }
+
+      expect(trip.status).to eq('pending')
+
+      patch '/api/v1/trips', params: invalid_params
+
+      trip.reload
+      expect(trip.status).to eq('pending')
+
+      expect(response).to_not be_successful
+      expect(response.status).to eq(404)
     end
   end
 end
