@@ -14,7 +14,7 @@ class FullTripFacade
   end
 
   def places
-    trip.pois.map do |poi|
+    trip.pois.order(sequence_number: :asc).map do |poi|
       # This is only current weather,
       # will need to update with timing between pois
       place = PoiSerializer.new(poi).to_json_with_timing(0)
@@ -25,7 +25,7 @@ class FullTripFacade
   end
 
   def legs
-    trip.trip_legs.map do |trip_leg|
+    trip.trip_legs.order(sequence_number: :asc).map do |trip_leg|
       trip_leg.to_json
     end
   end
