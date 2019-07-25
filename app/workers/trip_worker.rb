@@ -9,7 +9,7 @@ class TripWorker
       token: trip.token
     }
 
-    url = 'https://poi-microservice.herokuapp.com/api/v1/build_trip'
+    url = 'http://127.0.0.1:9393/api/v1/build_trip' # https://poi-microservice.herokuapp.com
 
     Faraday.post(url, body.to_json, "Content-Type" => "application/json")
   end
